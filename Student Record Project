@@ -1,0 +1,86 @@
+/*
+Prompt: Create a program that tracks an array of student records.
+        Create a menu with the following options. 
+		1. Allow the user to enter values for each student in the array. 
+		2. Organize all student records by name.
+		3. Organize all student records by GPA.
+		4. Organize all student records by age.
+		5. Organize all student records by grade.
+        Allow the user to store each student's information and then print all student records. 
+*/
+
+#include <iostream>
+#include <stdlib.h>
+#include <string>
+using namespace std;
+
+// Global Variables
+const int SIZE = 3;
+
+class StudentClass {
+
+private:
+
+	int age, grade;
+	string name, ID;
+	double balance;
+
+public:
+
+	StudentClass();
+	void InputStudentInfo(StudentClass Student[]);
+	void PrintStudentInfo(const StudentClass Student[]);
+	~StudentClass();
+
+
+};
+
+// Default Constructor Definition
+StudentClass::StudentClass() : age(0), grade(0), name("0"), ID("0"), balance(0.0) {}
+
+int main(void) {
+
+	// Declaring Class Object
+	StudentClass * StudentPointer = new StudentClass[SIZE];
+
+	if (StudentPointer == NULL) {
+		cout << "Dynamic Memory Allocation Failed!\n";
+		exit(0);
+	}
+
+	// Input Student Information
+	StudentPointer[3].InputStudentInfo(StudentPointer);
+
+	// Print Student Objects
+	StudentPointer[3].PrintStudentInfo(StudentPointer);
+
+	// Deallocate Dynamically Allocated Array
+	delete[]StudentPointer;
+
+	system("pause");
+	return 0;
+}
+
+void StudentClass::InputStudentInfo(StudentClass Student[]) {
+
+	for (int count = 0; count < SIZE; count++) {
+
+		cout << "Student #" << count + 1 << endl;
+		cout << "Enter Student Name / Age / Grade / ID / Balance: ";
+		cin >> Student[count].name >> Student[count].age >> Student[count].grade >> Student[count].ID >> Student[count].balance;
+		cout << endl;
+	}
+}
+
+void StudentClass::PrintStudentInfo(const StudentClass Student[]) {
+
+	for (int count = 0; count < SIZE; count++) {
+		cout << "Student #" << count + 1 << endl;
+		cout << "Name: " << Student[count].name << endl;
+		cout << "Age: " << Student[count].age << endl;
+		cout << "Grade: " << Student[count].grade << endl;
+		cout << "ID: " << Student[count].ID << endl;
+		cout << "Balance: " << Student[count].balance << endl << endl;
+	}
+
+}
